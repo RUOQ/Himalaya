@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Himalaya</string>
+    <string name="Success">拿破仑.希尔《成功学全书》</string>
+    <string name="Retry">网络错误,请点击重试！</string>
+    <string name="loading">正在玩命加载中...</string>
+    <string name="empty">呜呜~~内容为空</string>
+    <string-array name="indicator_name">
+        <item>推荐</item>
+        <item>订阅</item>
+        <item>历史</item>
+    </string-array>
+</resources>
