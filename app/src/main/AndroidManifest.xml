@@ -33,6 +33,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".fragments.SubcriptionFragment" />
+        <activity android:name=".DetailActivity">
+
+        </activity>
     </application>
 
 </manifest>

@@ -1,41 +1,33 @@
 package com.example.himalaya.fragments;
 
+import android.content.Intent;
 import android.graphics.Rect;
-import android.provider.Contacts;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
+import com.example.himalaya.DetailActivity;
 import com.example.himalaya.R;
 import com.example.himalaya.adapters.RecommendListAdapter;
 import com.example.himalaya.base.BaseFragment;
 import com.example.himalaya.interfaces.IRecommendViewCallback;
+import com.example.himalaya.presenters.AlbumDetailPresenter;
 import com.example.himalaya.presenters.RecommentPresenter;
-import com.example.himalaya.utils.Constants;
-import com.example.himalaya.utils.LogUtil;
 import com.example.himalaya.views.UILoader;
-import com.ximalaya.ting.android.opensdk.constants.DTransferConstants;
-import com.ximalaya.ting.android.opensdk.datatrasfer.CommonRequest;
-import com.ximalaya.ting.android.opensdk.datatrasfer.IDataCallBack;
 import com.ximalaya.ting.android.opensdk.model.album.Album;
-import com.ximalaya.ting.android.opensdk.model.album.GussLikeAlbumList;
 
 import net.lucode.hackware.magicindicator.buildins.UIUtil;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /*
  *author:The GodFather
  *Date:2020/9/12
  *description:
- */public class RecommendFragment extends BaseFragment implements IRecommendViewCallback, UILoader.OnRetryClickListener {
+ */public class RecommendFragment extends BaseFragment implements IRecommendViewCallback, UILoader.OnRetryClickListener, RecommendListAdapter.onRecommendItemClickListener {
     private static final String TAG ="RecommendFragment" ;
     private RecyclerView recyclerView ;
 
@@ -96,6 +88,7 @@ import java.util.Map;
         //3.设置适配器
         recommendListAdapter = new RecommendListAdapter();
         recyclerView.setAdapter(recommendListAdapter);
+        recommendListAdapter.setOnRecommendItemClickListener(this);
         return rootView;
     }
 
@@ -143,5 +136,15 @@ import java.util.Map;
       if(mRecommendPresenter != null){
           mRecommendPresenter.getRecommendList();
       }
+    }
+
+    //item被点击,跳转到详情界面
+    @Override
+    public  void onItemClick(int position,Album album){
+        //根据位置拿到数据库
+        AlbumDetailPresenter.getInstance().setTargetAlbum(album);
+        //intent被点击跳转到详情页面
+        Intent intent =new Intent(getContext(), DetailActivity.class);
+        startActivity(intent);
     }
 }

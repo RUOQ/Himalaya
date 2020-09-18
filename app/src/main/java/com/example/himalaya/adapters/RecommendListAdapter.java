@@ -7,11 +7,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.example.himalaya.R;
+import com.example.himalaya.utils.LogUtil;
 import com.squareup.picasso.Picasso;
 import com.ximalaya.ting.android.opensdk.model.album.Album;
 
@@ -24,7 +23,10 @@ import java.util.List;
  *description:
  */public class RecommendListAdapter extends RecyclerView.Adapter<RecommendListAdapter.InnerHolder>{
 
-     private List<Album> mData = new ArrayList<>();
+    private static final String TAG ="RecommendListAdapter" ;
+    private List<Album> mData = new ArrayList<>();
+    private onRecommendItemClickListener mItemClickListener = null;
+
     @NonNull
     @Override
     public InnerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -34,9 +36,20 @@ import java.util.List;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecommendListAdapter.InnerHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecommendListAdapter.InnerHolder holder, final int position) {
      //这里设置数据
         holder.itemView.setTag(position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mItemClickListener != null){
+                    int clickPositon = (Integer)v.getTag();
+                    mItemClickListener.onItemClick(clickPositon,mData.get(position));
+                }
+                LogUtil.d(TAG,"holder.itemView click -->"+v.getTag());
+            }
+
+        });
         holder.setData(mData.get(position));
     }
 
@@ -89,5 +102,11 @@ import java.util.List;
                     .load(album.getCoverUrlLarge())
                     .into(albumCoverIv);
         }
+    }
+    public void setOnRecommendItemClickListener(onRecommendItemClickListener listener){
+      this.mItemClickListener = listener;
+    }
+    public interface onRecommendItemClickListener{
+        void onItemClick(int position,Album album);
     }
 }

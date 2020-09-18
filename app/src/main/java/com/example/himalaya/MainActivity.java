@@ -1,14 +1,15 @@
 package com.example.himalaya;
 
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
-
-import android.annotation.SuppressLint;
-import android.os.Bundle;
-
 
 import com.example.himalaya.adapters.IndicatorAdapter;
 import com.example.himalaya.adapters.MainContentAdapter;
@@ -19,7 +20,7 @@ import net.lucode.hackware.magicindicator.ViewPagerHelper;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
 
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends AppCompatActivity {
     private static final String Tag="MainActivity";
     private MagicIndicator magicIndicator;
     private ViewPager contentPager;

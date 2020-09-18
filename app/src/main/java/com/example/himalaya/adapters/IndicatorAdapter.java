@@ -5,9 +5,7 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 
-import com.example.himalaya.MainActivity;
 import com.example.himalaya.R;
-import com.example.himalaya.utils.LogUtil;
 
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;

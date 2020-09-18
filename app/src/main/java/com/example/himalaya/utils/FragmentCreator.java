@@ -6,7 +6,6 @@ import com.example.himalaya.fragments.HistoryFragment;
 import com.example.himalaya.fragments.RecommendFragment;
 import com.example.himalaya.fragments.SubcriptionFragment;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
